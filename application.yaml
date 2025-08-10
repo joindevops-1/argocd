@@ -19,10 +19,14 @@ spec:
     server: https://kubernetes.default.svc
     namespace: roboshop
   syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
       - ApplyOutOfSyncOnly=true
       - ServerSideApply=true
+      - PruneLast=true
   revisionHistoryLimit: 10
   ignoreDifferences:                            # avoids false drift if mutating webhooks add pod annotations
     - group: apps
